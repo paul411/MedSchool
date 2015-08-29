@@ -1,0 +1,56 @@
+<form name="userForm" style="border: 1px solid red;" class="form-inline" role="form" ng-submit="submitForm()" novalidate>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h3 class="modal-title">My Stats</h3>
+							</div>
+							<div class="modal-body container">
+								<div class="row">
+									<div class="col-xs-3">
+										<div class="panel panel-default">
+											<div class="panel-heading">My GPA</div>
+											<div class="panel-body">
+												<div class="form-group" ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine }">
+													<input type="text" class="form-control" name="cgpa" id="cgpa" value="{{myStats.cgpa}}" style="width: 50px" required>
+													<label for="email">Cumulative GPA (cGPA):</label>
+													<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is required.</p>
+												</div>
+												<div class="form-group" ng-class="{ 'has-error' : userForm.sgpa.$invalid && !userForm.sgpa.$pristine }">
+													<input type="text" class="form-control" name="sgpa" id="sgpa" value="{{myStats.sgpa}}" style="width: 50px">
+													<label for="pwd">Science GPA (sGPA):</label>
+													<p ng-show="userForm.sgpa.$invalid && !userForm.sgpa.$pristine" class="help-block">sGPA is required.</p>
+												</div>
+												<span ng-class="{ success: userForm.$valid, danger: userForm.$invalid }">TEST</span>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-3">
+										<div class="panel panel-default">
+											<div class="panel-heading">My MCAT</div>
+											<div class="panel-body">
+
+												<input type="text" class="form-control" id="mcatps" value="{{myStats.mcatps}}" style="width: 50px">
+												<label style="padding-left: 10px" for="mcatps">MCAT PS:</label>
+
+												<br>
+												<br>
+												<input type="text" class="form-control" id="mcatbs" value="{{myStats.mcatbs}}" style="width: 50px">
+												<label style="padding-left: 10px" for="mcatps">MCAT BS:</label>
+
+												<br>
+												<br>
+												<input type="text" class="form-control" id="mcatvr" value="{{myStats.mcatvr}}" style="width: 50px">
+												<label style="padding-left: 10px" for="mcatvr">MCAT VR:</label>
+
+												<br>
+												<br>
+												<h3>{{mcatbs*1 + mcatvr*1 + mcatps *1}}</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-floppy-saved"></span>&nbsp;&nbsp;&nbsp;Save</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></button>
+							</div>
+						</form>

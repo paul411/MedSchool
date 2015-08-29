@@ -1,0 +1,20 @@
+DATA.feed.entry.gsx$_cpzh4.$t // = THE NAME of the program
+DATA.feed.entry.gsx$type.$t // = THE Type of the program
+gsx$_cokwr //STATE
+
+gsx$applicants.$t // number of instate
+gsx$_d180g.$t //total applicants
+
+gsx$interviews.$t // IN STATE interviews
+gsx$_cu76f.$t // TOTAL interviews
+
+gsx$matriculants //IN STATE matriculants
+gsx$_d9ney //TOTAL matriculants
+
+gsx$_cyevm //cGPA
+gsx$gpa //sGPA
+
+gsx$mcat //PS
+gsx$_chk2m //BS
+gsx$_ciyn3 //VR
+gsx$_ckd7g //MCAT overall

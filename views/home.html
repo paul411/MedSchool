@@ -1,0 +1,11 @@
+<div ng-repeat="(key, value) in schools | groupBy: 'gsx$_cokwr.$t'">
+  <h2>{{ key }}</h2>
+  <div class="list-group">
+    <div class="list-group-item" ng-repeat="school in value">
+      <a href="#/school/{{ schools.indexOf(school) }}">
+        <span class="from">{{ school.gsx$_cpzh4.$t }}</span>
+        <span class="label label-osteo" style="font-weight: normal" ng-show="school.gsx$type.$t === 'O'">Osteo</span>
+      </a>
+    </div>
+  </div>
+</div>

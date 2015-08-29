@@ -1,0 +1,4 @@
+<td class="stat"><span>{{to}}</span></td>
+<td><span class="compare-label" ng-class="{'label-success':me*1>=to*1,'label-danger':me*1<to*1}">{{display}} </span>
+</td>
+<td class="stat" ng-class="{'stat-success':me*1>=to*1,'stat-danger':me*1<to*1}"><span>{{me}}</span> <i ng-show="me*1>=to*1" class="glyphicon glyphicon-ok"></i><i ng-show="me*1<to*1" class="glyphicon glyphicon-exclamation-sign"></i> <span class="badge" ng-class="{'badge-success':me*1>=to*1,'badge-danger':me*1<to*1}">{{(me*1-to*1)/to*1 | percentage:0}}</span></td>

@@ -1,0 +1,90 @@
+<a class="btn btn-primary" href="#/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+
+<div class="btn-group pull-right">
+  <a class="btn btn-default" href="#/school/{{ prevSchoolIndex }}"><span class="glyphicon glyphicon-chevron-left"></span>Previous</a>
+  <a class="btn btn-default" href="#/school/{{ nextSchoolIndex }}">Next <span class="glyphicon glyphicon-chevron-right glyphicon-align-right"></span></a>
+</div>
+
+<div class="school-view" shortcut="{right:{{$log.log('R')}},left:{{$log.log('R')}}">
+  <h1 class="page-header">{{ school.gsx$_cpzh4.$t }} <small><em>({{school.gsx$_cokwr.$t}})</em></small></h1>
+  <div class="row">
+    <div class="col-sm-6" style="text-align: center">
+      <div class="panel panel-default" style="font-size: 120%">
+        <div class="panel-heading">
+          <h2>Academics</h2>
+        </div>
+        <div class="panel-body">
+          <div class="alert-danger" ng-hide="cgpa || sgpa || mcat || mcatBS || mcatPS || mcatVR">Data unavailable</div>
+          <table class="table table-hover" ng-show="cgpa || sgpa || mcat || mcatBS || mcatPS || mcatVR">
+            <thead>
+              <tr>
+                <th style="text-align: center">Their Stats</th>
+                <th></th>
+                <th style="text-align: center">Your Stats</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-show="{{cgpa}}" compare-stat me="{{myStats.cgpa}}" to="{{cgpa}}" min="2" max="4" full="Overall GPA" display="Overall GPA"></tr>
+              <tr ng-show="{{sgpa}}" compare-stat me="{{myStats.sgpa}}" to="{{sgpa}}" min="2" max="4" full="Science GPA" display="Science GPA"></tr>
+
+              <tr ng-show="{{mcat}}" compare-stat me="{{myMcat()}}" to="{{mcat}}" min="6" max="45" display="MCAT" full="Medical College Admission Test"></tr>
+              <tr ng-show="{{mcatBS}}" compare-stat me="{{myStats.mcatbs}}" to="{{mcatBS}}" min="2" max="15" display="MCAT - BS" full="Biological Sciences"></tr>
+              <tr ng-show="{{mcatPS}}" compare-stat me="{{myStats.mcatps}}" to="{{mcatPS}}" min="2" max="15" display="MCAT - PS" full="Physical Sciences"></tr>
+              <tr ng-show="{{mcatVR}}" compare-stat me="{{myStats.mcatvr}}" to="{{mcatVR}}" min="2" max="15" display="MCAT - VR" full="Verbal Reasoning"></tr>
+
+              <tr class="med-score" ng-show="{{mcat && cgpa}}" compare-stat me="{{myMet()|number:0}}" to="{{(cgpa/8+mcat/90)*800 | number:0}}"
+              min="2" max="15" display="AcademINDEX" full="Medical Educational Divison Score"></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+        <h3>School Info</h3>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-sm-4 " ng-controller="PieCtrl " ng-show="inStateApplicants>0">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Applicants: <strong>{{applicants}}</strong></h4></div>
+        <div class="panel-body">
+          <canvas id="pie" legend="true" class="chart chart-pie chart-xs" data="[inStateApplicants,outOfStateApplicants]" labels="['In-State','Out-of-State']"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" ng-controller="PieCtrl" ng-show="inStateInterviews>0">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Interviews: <strong>{{interviews}}</strong> ({{interviews/applicants | percentage:2}} <small>of applicants</small>)</h4></div>
+        <div class="panel-body">
+          <canvas id="pie" legend="true" class="chart chart-pie chart-xs" data="[inStateInterviews, outOfStateInterviews]" labels="['In-State','Out-of-State']"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" ng-controller="PieCtrl" ng-show="inStateMatriculants>0">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h4>Matriculants: <strong>{{matriculants}}</strong> ({{matriculants/applicants | percentage:2}} <small>of applicants</small>)</h4></div>
+        <div class="panel-body">
+          <canvas id="pie" legend="true" class="chart chart-pie chart-xs" data="[inStateMatriculants, outOfStateMatriculants]" labels="['In-State','Out-of-State']"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div id="container" class="container">
+  <div class="row" ng-controller="StackedBarCtrl">
+    <div class="col-lg-6 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">Stacked Bar Chart</div>
+        <div class="panel-body">
+          <canvas class="chart chart-base" chart-type="stackedBartype" data="stackedBardata" labels="stackedBarlabels"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->

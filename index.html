@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans|Sura' rel='stylesheet' type='text/css'>
+	<link href="css/angular-chart.css" rel="stylesheet" />
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.css">
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<link href="css/app.css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.4.7/angular-filter.js"></script>
+	<script src="js/chart.min.js"></script>
+	<script src="js/Chart.StackedBar.js"></script>
+	<script src="js/angular-chart.min.js"></script>
+	<link href="css/xeditable.css" rel="stylesheet">
+	<script src="js/xeditable.min.js"></script>
+</head>
+
+<body ng-app="OutboxApp">
+	<div class="header">
+		<div class="container" ng-controller="MyStatsCtrl">
+
+			<!-- Modal -->
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h3 class="modal-title">My Stats</h3>
+							</div>
+							<div class="row" style="padding: 10px;">
+								<div class="col-sm-6">
+									<!--GPA PANEL-->
+									<div class="panel panel-default">
+										<div class="panel-heading">GPA</div>
+										<div class="panel-body">
+											<!-- cGPA -->
+											<div class="form-group" ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine,'has-success' : userForm.cgpa.$valid && !userForm.cgpa.$pristine }">
+												<label>cGPA*</label>
+												<input type="number" name="cgpa" class="form-control" ng-model="user.cgpa" required min="0" max="4" step="0.1">
+												<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is incomplete.</p>
+												<p ng-show="userForm.cgpa.$error.min" class="has-error help-block ">cGPA must be more than 0</p>
+												<p ng-show="userForm.cgpa.$error.max" class="has-error help-block ">cGPA must be less than 4</p>
+											</div>
+
+											<!-- sGPA -->
+											<div class="form-group" ng-class="{ 'has-error' : userForm.sgpa.$invalid && !userForm.sgpa.$pristine,'has-success' : userForm.sgpa.$valid && !userForm.sgpa.$pristine }">
+												<label>sGPA</label>
+												<input type="number" name="sgpa" class="form-control" ng-model="user.sgpa" min="0" max="4" step="0.1">
+												<p ng-show="userForm.sgpa.$invalid && !userForm.sgpa.$pristine" class="help-block">sgpa is invalid.</p>
+												<p ng-show="userForm.sgpa.$error.min" class="has-error help-block ">sgpa must be more than 0</p>
+												<p ng-show="userForm.sgpa.$error.max" class="has-error help-block ">sgpa must be less than 4</p>
+											</div>
+
+										</div>
+									</div>
+									<!--END GPA PANEL-->
+								</div>
+								<div class="col-sm-6">
+									<!--MCAT PANEL-->
+									<div class="panel panel-default">
+										<div class="panel-heading">MCAT <strong>{{user.mcatvr && user.mcatps && user.mcatbs ? user.mcatps*1 + user.mcatbs*1 + user.mcatvr*1 : "NA"}}</strong></div>
+										<div class="panel-body">
+											<!-- MCAT PS -->
+											<div class="form-group" ng-class="{ 'has-error' : userForm.mcatps.$invalid && !userForm.mcatps.$pristine,'has-success' : userForm.mcatps.$valid && !userForm.mcatps.$pristine }">
+												<label>MCAT PS</label>
+												<input type="number" name="mcatps" class="form-control" ng-model="user.mcatps" required min="2" max="15" step="1">
+												<p ng-show="userForm.mcatps.$invalid && !userForm.mcatps.$pristine" class="help-block">MCAT PS is invalid.</p>
+												<p ng-show="userForm.mcatps.$error.min||userForm.mcatps.$error.max" class="has-error help-block ">MCAT PS must be between 2 and 15</p>
+											</div>
+											<!-- MCAT BS -->
+											<div class="form-group" ng-class="{ 'has-error' : userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine,'has-success' : userForm.mcatbs.$valid && !userForm.mcatbs.$pristine }">
+												<label>MCAT BS</label>
+												<input type="number" name="mcatbs" class="form-control" ng-model="user.mcatbs" required min="2" max="15" step="1">
+												<p ng-show="userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine" class="help-block">MCAT BS is invalid.</p>
+												<p ng-show="userForm.mcatbs.$error.min||userForm.mcatbs.$error.max" class="has-error help-block ">MCAT BS must be between 2 and 15</p>
+											</div>
+											<!-- MCAT VR -->
+											<div class="form-group" ng-class="{ 'has-error' : userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine,'has-success' : userForm.mcatvr.$valid && !userForm.mcatvr.$pristine }">
+												<label>MCAT VR</label>
+												<input type="number" name="mcatvr" class="form-control" ng-model="user.mcatvr" required min="2" max="15" step="1">
+												<p ng-show="userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine" class="help-block">MCAT VR is invalid.</p>
+												<p ng-show="userForm.mcatvr.$error.min||userForm.mcatvr.$error.max" class="has-error help-block ">MCAT VR must be between 2 and 15</p>
+											</div>
+										</div>
+									</div>
+									<!--END MCAT PANEL-->
+								</div>
+
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success" data-dismiss="modal">Save <span class="glyphicon glyphicon-floppy-disk"></span></button>
+							</div>
+
+
+
+
+						</form>
+					</div>
+
+				</div>
+			</div>
+			<!-- End Modal -->
+
+
+			<div class="row  myStats">
+				<div class="col-sm-3">
+					<h2>My Stats <button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-pencil"></i></button></h2>
+				</div>
+				<div class="col-sm-7">
+					<span class="headerStat">cGPA <span class="label label-primary">{{mySt().cgpa|number:2}}</span></span>
+					<span class="headerStat">sGPA <span class="label label-primary">{{mySt().sgpa|number:2}}</span></span>
+					<span class="headerStat">MCAT <span class="label label-info">{{mySt().mcatps*1+mySt().mcatbs*1+mySt().mcatvr*1}}</span></span>
+					<span class="headerStat">MCAT PS  <span class="label label-default">{{mySt().mcatps|number:0}}</span></span>
+					<span class="headerStat">MCAT BS  <span class="label label-default">{{mySt().mcatbs|number:0}}</span></span>
+					<span class="headerStat">MCAT VR  <span class="label label-default">{{mySt().mcatvr|number:0}}</span></span>
+				</div>
+
+				<div class="col-sm-1">
+					{{myMet()|number:0}}/800
+				</div>
+				<div class="col-sm-1">
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="main">
+		<div class="container">
+			<div ng-view></div>
+		</div>
+	</div>
+
+	<!-- Modules -->
+	<script src="js/data.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/directives.js"></script>
+	<script>
+		app.directive('chartStackedBar', function (ChartJsFactory) {return new ChartJsFactory('StackedBar');});//StackedBar
+	</script>
+</body>
+
+</html>
