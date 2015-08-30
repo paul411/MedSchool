@@ -38,7 +38,7 @@
 								<table class="table table-hover">
 									<tbody>
 										<tr>
-											<td>
+											<td ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine,'has-success' : userForm.cgpa.$valid && !userForm.cgpa.$pristine }" class="form-group">
 												<p>Overall (Cumulative) GPA</p>
 												<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is incomplete.</p>
 												<p ng-show="userForm.cgpa.$error.min" class="has-error help-block ">cGPA must be more than 0</p>
