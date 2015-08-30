@@ -61,14 +61,7 @@
 									<div class="panel panel-default">
 										<div class="panel-heading">GPA</div>
 										<div class="panel-body">
-											<!-- cGPA -->
-											<div class="form-group" ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine,'has-success' : userForm.cgpa.$valid && !userForm.cgpa.$pristine }">
-												<label>cGPA*</label>
-												<input type="number" name="cgpa" class="form-control" ng-model="user.cgpa" required min="0" max="4" step="0.1">
-												<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is incomplete.</p>
-												<p ng-show="userForm.cgpa.$error.min" class="has-error help-block ">cGPA must be more than 0</p>
-												<p ng-show="userForm.cgpa.$error.max" class="has-error help-block ">cGPA must be less than 4</p>
-											</div>
+										
 
 											<!-- sGPA -->
 											<div class="form-group" ng-class="{ 'has-error' : userForm.sgpa.$invalid && !userForm.sgpa.$pristine,'has-success' : userForm.sgpa.$valid && !userForm.sgpa.$pristine }">
