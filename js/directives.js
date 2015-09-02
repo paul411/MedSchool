@@ -27,3 +27,12 @@ app.directive('showRank', function() {
     templateUrl: 'views/showRank.html',
   }
 });
+
+app.directive('compareStatLabel', function() {
+  return {
+    restrict: 'E',
+    scope: {me: '@', to: '@', min: '@', max: '@', display: '@', full: '@'
+    },
+    templateUrl: 'views/compareStatLabel.html',
+  }
+});

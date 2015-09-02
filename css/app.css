@@ -261,3 +261,7 @@
 	font-weight: bold;
 	font-family: 'Sura', 'Open Sans', sans-serif;
 }
+
+td.home-school-numbers {
+	width: 80px;	
+}

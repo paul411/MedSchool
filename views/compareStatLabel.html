@@ -1,0 +1,5 @@
+<p class="stat" style="background: #eee; text-align: center; padding: 3px; border-radius: 5px;" ng-class="{'stat-success':me*1>=to*1,'stat-danger':me*1<to*1}">
+	<span data-toggle="tooltip" tooltip="Your {{display}} is {{me/to/100 | percentage: 0}} higher" tooltip-placement="left" >
+		{{to}}
+	</span>
+</p>

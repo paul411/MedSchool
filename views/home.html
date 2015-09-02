@@ -1,11 +1,30 @@
 <div ng-repeat="(key, value) in schools | groupBy: 'gsx$_cokwr.$t'">
   <h2>{{ key }}</h2>
-  <div class="list-group">
-    <div class="list-group-item" ng-repeat="school in value">
-      <a href="#/school/{{ schools.indexOf(school) }}">
-        <span class="from">{{ school.gsx$_cpzh4.$t }}</span>
-        <span class="label label-osteo" style="font-weight: normal" ng-show="school.gsx$type.$t === 'O'">Osteo</span>
-      </a>
-    </div>
+  <div class="container" ">
+    <table class="table table-hover" style="background: white;">
+      <tr ng-repeat="xschool in value">
+        <td>
+          <a href="#/school/{{ schools.indexOf(xschool) }}">
+            <span class="from">{{ xschool.gsx$fullname.$t }}</span>
+            <span class="label label-osteo" style="font-weight: normal" ng-show="xschool.gsx$type.$t === 'O'">Osteo</span>
+          </a>
+        </td>
+        <td class="home-school-numbers">
+          <compare-stat-label me="{{myStats.cgpa}}" to="{{xschool.gsx$_cyevm.$t}}" min="0" max="4" display="cGPA" full="Cumulative (Overall) GPA"></compare-stat-label>
+        </td>
+        <td class="home-school-numbers">
+          <compare-stat-label me="{{myMcat()}}" to="{{xschool.gsx$_ckd7g.$t}}" min="0" max="4" display="MCAT" full="Medical College Adimssion Test"></compare-stat-label>
+        </td>
+        <td class="home-school-numbers">
+          D
+        </td>
+        <td class="home-school-numbers">
+          <show-rank ng-show="{{xschool.gsx$usnewsresearchranking.$t}}" rank="{{xschool.gsx$usnewsresearchranking.$t}}" max="88" full="Research Rank"></show-rank>
+        </td>
+        <td class="home-school-numbers">
+          <show-rank ng-show="{{xschool.gsx$usnewsprimarycareranking.$t}}" rank="{{xschool.gsx$usnewsprimarycareranking.$t}}" max="85" full="Primary Care Rank"></show-rank>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

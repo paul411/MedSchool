@@ -42,7 +42,7 @@ app.config(function (ChartJsProvider) {
 app.controller('PieCtrl', function ($scope) {});
 
 app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory',function($scope,$log, $routeParams,testFactory) {
-
+    $scope.schools = masterData.feed.entry;
     $scope.myStats = testFactory.getStats();
     $scope.myMet = testFactory.getMetric;
     $scope.user = testFactory.getStats();
@@ -55,6 +55,21 @@ app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory
     if(!angular.isUndefined($scope.school.gsx$mcat)){$scope.mcatPS = $scope.school.gsx$mcat.$t;}
     if(!angular.isUndefined($scope.school.gsx$_chk2m)){$scope.mcatBS = $scope.school.gsx$_chk2m.$t;}
     if(!angular.isUndefined($scope.school.gsx$_ciyn3)){$scope.mcatVR = $scope.school.gsx$_ciyn3.$t;}
+    
+    //console.log('school sGPA ' + $scope.sgpa + ' school cGPA ' + $scope.cgpa + ' MCAT ' + $scope.mcat)
+    if($scope.sgpa > 0 && $scope.sgpa > 0 && $scope.mcat > 0) {
+        $scope.schoolMetric = ((($scope.sgpa*0.65+$scope.cgpa*0.35)/4)*0.5+($scope.mcat)/45*0.5)*800;
+    }
+    else if ($scope.cgpa > 0 && $scope.mcat > 0) {
+        $scope.schoolMetric = (($scope.cgpa/4)*0.5+($scope.mcat)/45*0.5)*800;
+    }
+    else {
+        $scope.schoolMetric = -1;
+    }
+    $scope.schoolMetric = Math.round($scope.schoolMetric);
+    console.log($scope.schoolMetric);
+    
+    
     
     var myIndex = $routeParams.id * 1;
     var numSchools = angular.fromJson(masterData).feed.entry.length-1; //Array length is one higher than the actual # of schools for some reason...
@@ -98,8 +113,12 @@ app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory
 }]);
 
 
-app.controller('HomeController', ['$scope', function($scope) {
+app.controller('HomeController', ['$scope','testFactory', function($scope,testFactory) {
     $scope.schools = masterData.feed.entry;
+    $scope.myStats = testFactory.getStats();
+    $scope.myMet = testFactory.getMetric;
+    $scope.user = testFactory.getStats();
+    $scope.myMcat =  testFactory.getMcat;
 }]);
 
 // This filter makes the assumption that the input will be in decimal form (i.e. 17% is 0.17).
@@ -146,7 +165,7 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
             return countF;
         },
         getMcat : function() {
-            //console.log('getMcat fxn output: ' + (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1));
+            console.log('getMcat fxn output: ' + (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1));
             return (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1); 
         },
         getMetric : function() {

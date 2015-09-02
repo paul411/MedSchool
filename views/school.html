@@ -32,7 +32,7 @@
               <tr ng-show="{{mcatPS}}" compare-stat me="{{myStats.mcatps}}" to="{{mcatPS}}" min="2" max="15" display="MCAT - PS" full="Physical Sciences"></tr>
               <tr ng-show="{{mcatVR}}" compare-stat me="{{myStats.mcatvr}}" to="{{mcatVR}}" min="2" max="15" display="MCAT - VR" full="Verbal Reasoning"></tr>
 
-              <tr class="med-score" ng-show="{{mcat && cgpa}}" compare-stat me="{{myMet()|number:0}}" to="{{(cgpa/8+mcat/90)*800 | number:0}}"
+              <tr class="med-score" ng-show="{{mcat && cgpa}}" compare-stat me="{{myMet()|number:0}}" to="{{schoolMetric}}"
               min="2" max="15" display="AcademINDEX" full="Medical Educational Divison Score"></tr>
             </tbody>
           </table>
@@ -47,8 +47,9 @@
         <div class="panel-body">
           <div ng-show="{{school.gsx$usnewsresearchranking.$t||school.gsx$usnewsprimarycareranking.$t}}">
             <h4>US News Ranking</h4>
-            <show-rank rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
-            <show-rank rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85" display="Primary Care"></show-rank>
+            <show-rank ng-show="{{school.gsx$usnewsresearchranking.$t}}" rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
+            <show-rank ng-show="{{school.gsx$usnewsprimarycareranking.$t}}" rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85" display="Primary Care"></show-rank>
+            {{schoolMetric}}
           </div>
         </div>
       </div>
