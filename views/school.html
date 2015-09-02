@@ -11,7 +11,7 @@
     <div class="col-sm-8" style="text-align: center">
       <div class="panel panel-default" style="font-size: 120%">
         <div class="panel-heading">
-          <h2>Academics</h2>
+          <h3>Academics</h3>
         </div>
         <div class="panel-body">
           <div class="alert-danger" ng-hide="cgpa || sgpa || mcat || mcatBS || mcatPS || mcatVR">Data unavailable</div>
@@ -39,8 +39,19 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-6">
-        <h3>School Info</h3>
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3>School Info</h3>
+        </div>
+        <div class="panel-body">
+          <div ng-show="{{school.gsx$usnewsresearchranking.$t||school.gsx$usnewsprimarycareranking.$t}}">
+            <h4>US News Ranking</h4>
+            <show-rank rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
+            <show-rank rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85" display="Primary Care"></show-rank>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

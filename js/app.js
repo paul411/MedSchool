@@ -1,4 +1,4 @@
-var app = angular.module('OutboxApp', ['ngRoute','xeditable','angular.filter','chart.js']);
+var app = angular.module('OutboxApp', ['ngRoute','xeditable','angular.filter','chart.js','ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {
@@ -146,7 +146,7 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
             return countF;
         },
         getMcat : function() {
-            console.log('getMcat fxn output: ' + (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1));
+            //console.log('getMcat fxn output: ' + (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1));
             return (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1); 
         },
         getMetric : function() {

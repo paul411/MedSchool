@@ -15,3 +15,15 @@ app.directive('showStat', function() {
     templateUrl: 'views/showStat.html'
   }
 });
+
+app.directive('showRank', function() {
+  return {
+    restrict: 'E',
+    scope: {rank: '@', max: '@', display: '@', full: '@'
+    },
+    link: function(scope, elem, attrs) {
+      scope.percentile = Math.floor(attrs.rank/attrs.max*100/25);
+    },
+    templateUrl: 'views/showRank.html',
+  }
+});
