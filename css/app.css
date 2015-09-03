@@ -265,3 +265,55 @@
 td.home-school-numbers {
 	width: 80px;	
 }
+
+/*AFFIX*/
+  
+  body {
+      position: relative; 
+  }
+  .affix {
+      top:0;
+      width: 100%;
+      z-index: 9999 !important;
+  }
+  .navbar {
+      margin-bottom: 0px;
+  }
+
+  .affix ~ .container-fluid {
+     position: relative;
+     top: 50px;
+  }
+  
+  .show-rank-display {
+	font-size: 75%;
+  }
+  
+  .home-school-numbers .show-rank-display {
+	  color: #737373;
+	  padding: 3px;
+  }
+  
+  .home-school-numbers .label {
+	  font-weight: normal;
+  }
+  
+  .home-school-numbers .label-success {
+	  background: #C7E2C7;
+	  color:#737373; 
+  }
+  
+  .home-school-numbers .label-warning {
+		background: #FDE4B2;
+	  color:#737373; 
+  }
+  
+  .home-school-numbers .label-primary {
+		background: #BECEDB;
+	  color:#737373; 
+  }
+  
+  .home-school-numbers .label-default {
+	  background: #E3E3E3;
+	  color:#737373; 
+  }
