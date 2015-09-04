@@ -117,7 +117,6 @@ app.controller('HomeController', ['$scope','testFactory', function($scope,testFa
     $scope.schools = masterData.feed.entry;
     $scope.myStats = testFactory.getStats();
     $scope.myMet = testFactory.getMetric;
-    $scope.user = testFactory.getStats();
     $scope.myMcat =  testFactory.getMcat;
 }]);
 
@@ -165,7 +164,6 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
             return countF;
         },
         getMcat : function() {
-            console.log('getMcat fxn output: ' + (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1));
             return (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1); 
         },
         getMetric : function() {
