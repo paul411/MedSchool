@@ -121,45 +121,9 @@
 			margin: 30px 0 0;
 		}
 		
-		.footer {
-			background: #000;
-			padding: 60px 0;
-		}
-		
-		.footer h3 {
-			color: #fff;
-			font-size: 18px;
-			font-weight: 300;
-		}
-		
-		.footer ul {
-			color: #0393ff;
-			list-style: none;
-			padding-left: 0px;
-		}
-		
-		.progress {
-			height: 30px;
-		}
-		.progress span {
-			font-size: 13px;			
-		}
-		
-		.timeline-right .progress-bar{
-			text-align: left;
-			padding-left: 10px;
-			padding-top: 3px;
-		}
-		
-		.progress-bar abbr {border: none;}
-		
-		.timeline-panel .progress-bar{
-			padding-left: 10px;
-			text-align: left;
-		}
-		
+				
 		h1, h2, h3, h4, h5, h6 {
-			font-family: 'Sura', serif;
+			font-family: 'Rambla', serif;
 		}
 		.label-osteo {
   			background-color: #F5F5F5;
@@ -169,46 +133,19 @@
 		.label-osteo[href]:focus {
   			background-color: #ffff77;
 		}
+		
 		.myStats {
 			color: white;
-			font-family: 'Sura', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			font-family: 'Rambla', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			text-align: center;
 		}
+		
+		
 		.myStats strong {
 			font-weight: bold;
 			font-size: 130%;
 		}
-		.myStats a.editable-click {
-			color: white;
-			font-size: 130%;
-			border-bottom:1px solid #ADADAD;
-		}
-		.myStats a.editable-click:hover {
-			color: white;
-			font-weight: bold;
-			cursor: text;
-			font-size: 130%;
-			border-bottom:1px dashed #ADADAD;
-		}
-		.myStats input[type=text] {
-			width: 50px;
-		}
-		h5.h5-circle{
-			width: 60px;
-			height: 60px;
-			padding: 10px 12px;
-			font-size: 24px;
-  			line-height: 50%;
-  			border-radius: 35px;
-  			background: white;
-  			color: #265A88
-	}
-	h5.h5-circle span{
-			font-size: 10px;
-  			color: #265A88;
-			 line-height: 20%;
-	}
-	
+		
 .compare-label {
   text-align: center;
 }
@@ -252,14 +189,14 @@
 .med-score td .compare-label {
 	background: none;
 	color: black;
-	font-family: 'Sura', 'Open Sans', sans-serif;
+	font-family: 'Rambla', sans-serif;
 	font-size: 120%;
 }
 
 .med-score td {
 	font-size: 120%;
 	font-weight: bold;
-	font-family: 'Sura', 'Open Sans', sans-serif;
+	font-family: 'Rambla', sans-serif;
 }
 
 td.home-school-numbers {
@@ -316,4 +253,25 @@ td.home-school-numbers {
   .home-school-numbers .label-default {
 	  background: #E3E3E3;
 	  color:#737373; 
+  }
+  
+  .header-stat {
+	  
+	  display: block;
+	  width: 40px;
+  }
+  
+  .header-stat-number {
+	  font-weight: bold;
+	  font-size: 110%;
+  }
+  
+  .header-stat-label {
+	  display: block; 
+	  padding: 0px 5px;
+	  color: #ADADAD;
+	  background: #F5F5F5;
+	  border-radius: 6px;
+	  font-size: 80%;
+	  font-weight: normal;
   }
