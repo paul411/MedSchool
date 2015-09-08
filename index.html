@@ -23,117 +23,124 @@
 </head>
 
 <body ng-app="OutboxApp">
-	<div class="header">
-		<div class="container" ng-controller="MyStatsCtrl">
 
-			<!-- Modal -->
-			<div id="myModal" class="modal fade" role="dialog">
-				<div class="modal-dialog modal-sm">
 
-					<!-- Modal content-->
-					<div class="modal-content">
-						<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h3 class="modal-title">My Stats</h3>
-							</div>
-							<div class="modal-body">
-								<table class="table table-hover">
-									<tbody>
-										<tr>
-											<td ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine,'has-success' : userForm.cgpa.$valid && !userForm.cgpa.$pristine }"
-											class="form-group">
-												<p>cGPA</p>
-												<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is incomplete.</p>
-												<p ng-show="userForm.cgpa.$error.min" class="has-error help-block ">cGPA must be more than 0</p>
-												<p ng-show="userForm.cgpa.$error.max" class="has-error help-block ">cGPA must be less than 4</p>
-											</td>
-											<td style="width: 100px;">
-												<input type="number" name="cgpa" class="form-control" ng-model="user.cgpa" required min="0" max="4" step="0.1">
-											</td>
-										</tr>
-										<tr>
-											<td class="form-group" ng-class="{ 'has-error' : userForm.sgpa.$invalid && !userForm.sgpa.$pristine,'has-success' : userForm.sgpa.$valid && !userForm.sgpa.$pristine }">
-												<p>sGPA</p>
-												<p ng-show="userForm.sgpa.$invalid && !userForm.sgpa.$pristine" class="help-block">sgpa is invalid.</p>
-												<p ng-show="userForm.sgpa.$error.min" class="has-error help-block ">sgpa must be more than 0</p>
-												<p ng-show="userForm.sgpa.$error.max" class="has-error help-block ">sgpa must be less than 4</p>
-											</td>
-											<td>
-												<input type="number" name="sgpa" class="form-control" ng-model="user.sgpa" min="0" max="4" step="0.1">
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h4>MCAT</h4></td>
-											<td>
-												<h4>{{user.mcatvr && user.mcatps && user.mcatbs ? user.mcatps*1 + user.mcatbs*1 + user.mcatvr*1 : "NA"}}</h4></td>
-										</tr>
-										<tr>
-											<td class="form-group" ng-class="{ 'has-error' : userForm.mcatps.$invalid && !userForm.mcatps.$pristine,'has-success' : userForm.mcatps.$valid && !userForm.mcatps.$pristine }">
-												<p>MCAT PS</p>
-												<p ng-show="userForm.mcatps.$invalid && !userForm.mcatps.$pristine" class="help-block">MCAT PS is invalid.</p>
-												<p ng-show="userForm.mcatps.$error.min||userForm.mcatps.$error.max" class="has-error help-block ">MCAT PS must be between 2 and 15</p>
-											</td>
-											<td>
-												<input type="number" name="mcatps" class="form-control" ng-model="user.mcatps" required min="2" max="15" step="1">
-											</td>
-										</tr>
-										<tr>
-											<td class="form-group" ng-class="{ 'has-error' : userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine,'has-success' : userForm.mcatbs.$valid && !userForm.mcatbs.$pristine }">
-												<p>MCAT BS</p>
 
-												<p ng-show="userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine" class="help-block">MCAT BS is invalid.</p>
-												<p ng-show="userForm.mcatbs.$error.min||userForm.mcatbs.$error.max" class="has-error help-block ">MCAT BS must be between 2 and 15</p>
-											</td>
-											<td>
-												<input type="number" name="mcatbs" class="form-control" ng-model="user.mcatbs" required min="2" max="15" step="1">
-											</td>
-										</tr>
-										<tr>
-											<!-- MCAT VR -->
-											<td class="form-group" ng-class="{ 'has-error' : userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine,'has-success' : userForm.mcatvr.$valid && !userForm.mcatvr.$pristine }">
-												<p>MCAT VR</p>
+	<div class="container" ng-controller="MyStatsCtrl">
 
-												<p ng-show="userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine" class="help-block">MCAT VR is invalid.</p>
-												<p ng-show="userForm.mcatvr.$error.min||userForm.mcatvr.$error.max" class="has-error help-block ">MCAT VR must be between 2 and 15</p>
-											</td>
-											<td>
-												<input type="number" name="mcatvr" class="form-control" ng-model="user.mcatvr" required min="2" max="15" step="1">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<span class="navbar-brand">My Stats</span>
+			<ul class="nav navbar-nav">
+				<li><button class="header-stat btn btn-default" data-toggle="modal" data-target="#myModal" href=""><span class="glyphicon glyphicon-pencil"></span></button></li>
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().cgpa}}</span><span class="header-stat-label">cGPA</span></a></li>
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().sgpa}}</span><span class="header-stat-label">sGPA</span></a></li>
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().mcatps*1+mySt().mcatbs*1+mySt().mcatvr*1}}</span><span class="header-stat-label">MCAT</span></a></li>
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().mcatps}}</span><span class="header-stat-label">PS</span></a></li>		
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().mcatbs}}</span><span class="header-stat-label">BS</span></a></li>
+				<li><a class="header-stat"  data-toggle="modal" data-target="#myModal" href=""><span class="header-stat-number">{{mySt().mcatvr}}</span><span class="header-stat-label">VR</span></a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		</nav>
 
-							<div class="modal-footer">
-								<button type="button" class="btn btn-success" data-dismiss="modal">Save <span class="glyphicon glyphicon-floppy-disk"></span></button>
-							</div>
-						</form>
-					</div>
 
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<form name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h3 class="modal-title">My Stats</h3>
+						</div>
+						<div class="modal-body">
+							<table class="table table-hover">
+								<tbody>
+									<tr>
+										<td ng-class="{ 'has-error' : userForm.cgpa.$invalid && !userForm.cgpa.$pristine,'has-success' : userForm.cgpa.$valid && !userForm.cgpa.$pristine }"
+										class="form-group">
+											<p>cGPA</p>
+											<p ng-show="userForm.cgpa.$invalid && !userForm.cgpa.$pristine" class="help-block">cGPA is incomplete.</p>
+											<p ng-show="userForm.cgpa.$error.min" class="has-error help-block ">cGPA must be more than 0</p>
+											<p ng-show="userForm.cgpa.$error.max" class="has-error help-block ">cGPA must be less than 4</p>
+										</td>
+										<td style="width: 100px;">
+											<input type="number" name="cgpa" class="form-control" ng-model="user.cgpa" required min="0" max="4" step="0.1">
+										</td>
+									</tr>
+									<tr>
+										<td class="form-group" ng-class="{ 'has-error' : userForm.sgpa.$invalid && !userForm.sgpa.$pristine,'has-success' : userForm.sgpa.$valid && !userForm.sgpa.$pristine }">
+											<p>sGPA</p>
+											<p ng-show="userForm.sgpa.$invalid && !userForm.sgpa.$pristine" class="help-block">sgpa is invalid.</p>
+											<p ng-show="userForm.sgpa.$error.min" class="has-error help-block ">sgpa must be more than 0</p>
+											<p ng-show="userForm.sgpa.$error.max" class="has-error help-block ">sgpa must be less than 4</p>
+										</td>
+										<td>
+											<input type="number" name="sgpa" class="form-control" ng-model="user.sgpa" min="0" max="4" step="0.1">
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<h4>MCAT</h4></td>
+										<td>
+											<h4>{{user.mcatvr && user.mcatps && user.mcatbs ? user.mcatps*1 + user.mcatbs*1 + user.mcatvr*1 : "NA"}}</h4></td>
+									</tr>
+									<tr>
+										<td class="form-group" ng-class="{ 'has-error' : userForm.mcatps.$invalid && !userForm.mcatps.$pristine,'has-success' : userForm.mcatps.$valid && !userForm.mcatps.$pristine }">
+											<p>MCAT PS</p>
+											<p ng-show="userForm.mcatps.$invalid && !userForm.mcatps.$pristine" class="help-block">MCAT PS is invalid.</p>
+											<p ng-show="userForm.mcatps.$error.min||userForm.mcatps.$error.max" class="has-error help-block ">MCAT PS must be between 2 and 15</p>
+										</td>
+										<td>
+											<input type="number" name="mcatps" class="form-control" ng-model="user.mcatps" required min="2" max="15" step="1">
+										</td>
+									</tr>
+									<tr>
+										<td class="form-group" ng-class="{ 'has-error' : userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine,'has-success' : userForm.mcatbs.$valid && !userForm.mcatbs.$pristine }">
+											<p>MCAT BS</p>
+
+											<p ng-show="userForm.mcatbs.$invalid && !userForm.mcatbs.$pristine" class="help-block">MCAT BS is invalid.</p>
+											<p ng-show="userForm.mcatbs.$error.min||userForm.mcatbs.$error.max" class="has-error help-block ">MCAT BS must be between 2 and 15</p>
+										</td>
+										<td>
+											<input type="number" name="mcatbs" class="form-control" ng-model="user.mcatbs" required min="2" max="15" step="1">
+										</td>
+									</tr>
+									<tr>
+										<!-- MCAT VR -->
+										<td class="form-group" ng-class="{ 'has-error' : userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine,'has-success' : userForm.mcatvr.$valid && !userForm.mcatvr.$pristine }">
+											<p>MCAT VR</p>
+
+											<p ng-show="userForm.mcatvr.$invalid && !userForm.mcatvr.$pristine" class="help-block">MCAT VR is invalid.</p>
+											<p ng-show="userForm.mcatvr.$error.min||userForm.mcatvr.$error.max" class="has-error help-block ">MCAT VR must be between 2 and 15</p>
+										</td>
+										<td>
+											<input type="number" name="mcatvr" class="form-control" ng-model="user.mcatvr" required min="2" max="15" step="1">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-success" data-dismiss="modal">Save <span class="glyphicon glyphicon-floppy-disk"></span></button>
+						</div>
+					</form>
 				</div>
+
 			</div>
-			<!-- End Modal -->
-
-			{{mySt().cgpa|number:2}} cGPA {{mySt().sgpa|number:2}} sGPA
-			<nav class="navbar navbar-default navbar-fixed-top">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						TEST
-					</div>
-					<ul class="nav navbar-nav">
-						<li>test1</li>
-						<li>test2</li>
-					</ul>
-				</div>
-			</nav>
-
 		</div>
+		<!-- End Modal -->
 
 	</div>
+
 	<div class="main">
 		<div class="container">
+
 			<div ng-view></div>
 		</div>
 	</div>

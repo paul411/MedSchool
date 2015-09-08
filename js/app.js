@@ -19,9 +19,7 @@ app.controller('MyStatsCtrl', function($scope,$rootScope,testFactory) {
     
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function(isValid) {
-		if (isValid) { 
-            //stuff to do        
-		}
+		console.log(isValid);
 	};
 });
 
