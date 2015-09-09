@@ -65,9 +65,10 @@ app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory
         $scope.schoolMetric = -1;
     }
     $scope.schoolMetric = Math.round($scope.schoolMetric);
+    
+    
+    $scope.schoolMetric = Math.round($scope.school.gsx$academindex.$t);
     console.log($scope.schoolMetric);
-    
-    
     
     var myIndex = $routeParams.id * 1;
     var numSchools = angular.fromJson(masterData).feed.entry.length-1; //Array length is one higher than the actual # of schools for some reason...
