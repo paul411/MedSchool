@@ -1,4 +1,4 @@
-var app = angular.module('OutboxApp', ['ngRoute','xeditable','angular.filter','chart.js','ui.bootstrap']);
+var app = angular.module('OutboxApp', ['ngRoute','xeditable','angular.filter','chart.js','ui.bootstrap','ngCookies']);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {
@@ -152,7 +152,7 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
   }]);
   
   
- app.factory('testFactory', function(){
+ app.factory('testFactory', ['$cookies', function($cookies){
     var countF = {
         "cgpa":3.5,
         "sgpa":3.5,
@@ -166,7 +166,9 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
         "avg":541.228556545897,
         "sd":109.174599242304
     }
-
+    
+    //$cookies.put('myStatsCookie',countF);
+    //console.log($cookies.get('myStatsCookie'));
     return {
         getStats : function () {
             return countF;
@@ -183,4 +185,4 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
             //return ((((countF.sgpa*0.65+countF.cgpa*0.35)/4)*0.5+((countF.mcatps*1+countF.mcatbs*1+countF.mcatvr*1)/45)*0.5)*100);
         }
     }               
-});
+}]);

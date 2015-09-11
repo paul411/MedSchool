@@ -1,6 +1,3 @@
-
-
-
 <div class="btn-group pull-right">
   <a class="btn btn-primary" href="#/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
   <a class="btn btn-default" href="#/school/{{ prevSchoolIndex }}"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -21,7 +18,20 @@
             <thead>
               <tr>
                 <th style="text-align: center">Their Stats</th>
-                <th></th>
+                <th style="text-align: center;">
+                  <p ng-show="myMet() >= schoolMetric + dataStats.sd">
+                    <span class="label label-success" data-toggle="tooltip" tooltip="Academically, you are well above the average matriculant at this school.">High Chance</span>
+                  </p>
+                  <p ng-show="myMet() >= schoolMetric && myMet() < schoolMetric+dataStats.sd">
+                    <span class="label label-info" data-toggle="tooltip" tooltip="You AcademINDEX puts you above the average matriculant at this school, academically">Good Chance</span>
+                  </p>
+                  <p ng-show="myMet() <= schoolMetric && myMet() > schoolMetric-dataStats.sd">
+                    <span class="label label-warning" data-toggle="tooltip" tooltip="Your AcademINDEX is lower than the AcademINDEX for this school. You are below the mean of the average matriculant here.">Low Chance</span>
+                  </p>
+                  <p ng-show="myMet() < schoolMetric-dataStats.sd">
+                    <span class="label label-danger" data-toggle="tooltip" tooltip="Your AcademINDEX is more than one standard deviation below the school's AcademINDEX">Very Low Chance</span>
+                  </p>
+                </th>
                 <th style="text-align: center">Your Stats</th>
               </tr>
             </thead>
@@ -34,8 +44,8 @@
               <tr ng-show="{{mcatPS}}" compare-stat me="{{myStats.mcatps}}" to="{{mcatPS}}" min="2" max="15" display="MCAT - PS" full="Physical Sciences"></tr>
               <tr ng-show="{{mcatVR}}" compare-stat me="{{myStats.mcatvr}}" to="{{mcatVR}}" min="2" max="15" display="MCAT - VR" full="Verbal Reasoning"></tr>
 
-              <tr class="med-score" ng-show="{{mcat && cgpa}}" compare-stat me="{{myMet()|number:0}}" to="{{schoolMetric}}"
-              min="2" max="15" display="AcademINDEX" full="Medical Educational Divison Score"></tr>
+              <tr class="med-score" ng-show="{{mcat && cgpa}}" compare-stat me="{{myMet()|number:0}}" to="{{schoolMetric}}" min="2" max="15"
+              display="AcademINDEX" data-toggle="tooltip" tooltip="Schools are scored between 200-800. Higher score = more competitive. Used to calculate your chances." full="Medical Educational Divison Score"></tr>
             </tbody>
           </table>
         </div>
@@ -50,19 +60,9 @@
           <div ng-show="{{school.gsx$usnewsresearchranking.$t||school.gsx$usnewsprimarycareranking.$t}}">
             <h4>US News Ranking</h4>
             <show-rank ng-show="{{school.gsx$usnewsresearchranking.$t}}" rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
-            <show-rank ng-show="{{school.gsx$usnewsprimarycareranking.$t}}" rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85" display="Primary Care"></show-rank>
-            <p ng-show="myMet() >= schoolMetric + dataStats.sd">
-              High Chance
-            </p>
-            <p ng-show="myMet() >= schoolMetric && myMet() < schoolMetric+dataStats.sd">
-              Good Chance
-            </p>
-            <p ng-show="myMet() <= schoolMetric && myMet() > schoolMetric-dataStats.sd">
-              Low Chance
-            </p>
-            <p ng-show="myMet() < schoolMetric-dataStats.sd">
-              Very Low Chance
-            </p>
+            <show-rank ng-show="{{school.gsx$usnewsprimarycareranking.$t}}" rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85"
+            display="Primary Care"></show-rank>
+
           </div>
         </div>
       </div>

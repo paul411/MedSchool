@@ -1,19 +1,23 @@
-<div ng-repeat="(key, value) in schools | groupBy: 'gsx$_cokwr.$t'"  ng-hide="key==='State'">
+<div ng-repeat="(key, value) in schools | groupBy: 'gsx$_cokwr.$t'" ng-hide="key==='State'">
   <h2>{{ key }}</h2>
   <div class="container">
     <table class="table table-hover " style="background: white; ">
       <tr ng-repeat="xschool in value">
         <td>
+
+          <span ng-show="myMet()-xschool.gsx$academindex.$t-dataStats.sd>=0"><span class="label label-success">High Chance</span></span>
+          <span ng-show="myMet()-xschool.gsx$academindex.$t>=0 && myMet()-xschool.gsx$academindex.$t-dataStats.sd<0"><span class="label label-info">Good Chance</span></span>
+          <span ng-show="myMet()-xschool.gsx$academindex.$t+dataStats.sd < 0"><span class="label label-danger">No Chance</span></span>
+          <span ng-show="myMet() < xschool.gsx$academindex.$t && myMet()-xschool.gsx$academindex.$t+dataStats.sd > 0"><span class="label label-warning">Low Chance</span></span>
+
+
           <a href="#/school/{{ schools.indexOf(xschool) }} ">
-            <span ng-show="myMet()-xschool.gsx$academindex.$t-dataStats.sd>=0"><span class="label label-success">High Chance</span></span>
-            <span ng-show="myMet()-xschool.gsx$academindex.$t>=0 && myMet()-xschool.gsx$academindex.$t-dataStats.sd<0"><span class="label label-info">Good Chance</span></span>
-            <span ng-show="myMet()-xschool.gsx$academindex.$t+dataStats.sd < 0"><span class="label label-danger">No Chance</span></span>
-            <span ng-show="myMet() < xschool.gsx$academindex.$t && myMet()-xschool.gsx$academindex.$t+dataStats.sd > 0"><span class="label label-warning">Low Chance</span></span>
-       
+
             <span class="from ">{{ xschool.gsx$fullname.$t }}</span>
-            <span class="label label-osteo " style="font-weight: normal " ng-show="xschool.gsx$type.$t==='O' ">Osteo</span>
-       
+            
           </a>
+          <span class="label label-osteo " style="font-weight: normal " ng-show="xschool.gsx$type.$t==='O' ">Osteo</span>
+
         </td>
         <td class="home-school-numbers ">
           <compare-stat-label me="{{myStats.cgpa}} " to="{{xschool.gsx$_cyevm.$t}} " min="0 " max="4 " display="cGPA
