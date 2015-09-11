@@ -1,5 +1,8 @@
-<p ng-show="{{to}}" class="stat" style="text-align: center; padding: 3px; " ng-class="{'stat-success':me*1>=to*1,'stat-danger':me*1<to*1}">
-	<span data-toggle="tooltip" tooltip="Your {{display}} is {{me-to | number:1}}" tooltip-placement="left" >
+<p  data-toggle="tooltip" tooltip="Your {{display}} is {{me-to | number:1}}" tooltip-placement="left" ng-show="{{to}}" class="stat" style="text-align: center; padding: 3px; " ng-class="{'stat-success':me*1>=to*1,'stat-danger':me*1<to*1}">
+	<span>
 		{{to}}
-	</span><span style="display: block; color: #ADADAD; background: #F5F5F5; border-radius: 6px; font-size: 80%; font-weight: normal">{{display}}</span>
+	</span>
+	<span ng-class="{'compare-stat-label-success':me*1>=to*1,'compare-stat-label-danger':me*1<to*1}" class="compare-stat-label">
+		{{display}}
+		</span>
 </p>

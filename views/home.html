@@ -5,8 +5,14 @@
       <tr ng-repeat="xschool in value">
         <td>
           <a href="#/school/{{ schools.indexOf(xschool) }} ">
+            <span ng-show="myMet()-xschool.gsx$academindex.$t-dataStats.sd>=0"><span class="label label-success">High Chance</span></span>
+            <span ng-show="myMet()-xschool.gsx$academindex.$t>=0 && myMet()-xschool.gsx$academindex.$t-dataStats.sd<0"><span class="label label-info">Good Chance</span></span>
+            <span ng-show="myMet()-xschool.gsx$academindex.$t+dataStats.sd < 0"><span class="label label-danger">No Chance</span></span>
+            <span ng-show="myMet() < xschool.gsx$academindex.$t && myMet()-xschool.gsx$academindex.$t+dataStats.sd > 0"><span class="label label-warning">Low Chance</span></span>
+       
             <span class="from ">{{ xschool.gsx$fullname.$t }}</span>
             <span class="label label-osteo " style="font-weight: normal " ng-show="xschool.gsx$type.$t==='O' ">Osteo</span>
+       
           </a>
         </td>
         <td class="home-school-numbers ">
@@ -18,7 +24,8 @@
   " full="Medical College Adimssion Test "></compare-stat-label>
         </td>
         <td class="home-school-numbers ">
-          <p><i>I</i></p>
+          <compare-stat-label me="{{myMet()}} " to="{{xschool.gsx$academindex.$t | number:0}}" min="200" max="800" display="AcademIndex
+  " full="Academic Index: out of 800"></compare-stat-label>
         </td>
         <td class="home-school-numbers" style="width: 160px">
           <show-rank ng-show="{{xschool.gsx$usnewsresearchranking.$t}} " rank="{{xschool.gsx$usnewsresearchranking.$t}}

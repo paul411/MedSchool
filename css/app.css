@@ -279,3 +279,21 @@ td.home-school-numbers {
 	  font-weight: normal;
 	  text-align: center;
   }
+  
+  .compare-stat-label {
+	  display: block; 
+	  border-radius: 6px; 
+	  font-size: 75%; 
+	  font-weight: normal;
+  }
+  
+  .compare-stat-label-success {
+	  color: #647164;
+	  background: #C7E2C7;
+  }
+  
+  
+  .compare-stat-label-danger {
+	  color: #A08282;
+	  background: #F7EAEA;
+  }

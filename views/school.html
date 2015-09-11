@@ -51,7 +51,18 @@
             <h4>US News Ranking</h4>
             <show-rank ng-show="{{school.gsx$usnewsresearchranking.$t}}" rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
             <show-rank ng-show="{{school.gsx$usnewsprimarycareranking.$t}}" rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85" display="Primary Care"></show-rank>
-            {{schoolMetric}}
+            <p ng-show="myMet() >= schoolMetric + dataStats.sd">
+              High Chance
+            </p>
+            <p ng-show="myMet() >= schoolMetric && myMet() < schoolMetric+dataStats.sd">
+              Good Chance
+            </p>
+            <p ng-show="myMet() <= schoolMetric && myMet() > schoolMetric-dataStats.sd">
+              Low Chance
+            </p>
+            <p ng-show="myMet() < schoolMetric-dataStats.sd">
+              Very Low Chance
+            </p>
           </div>
         </div>
       </div>

@@ -16,6 +16,7 @@ app.controller('MyStatsCtrl', function($scope,$rootScope,testFactory) {
     $scope.mySt = testFactory.getStats; //mySt = my stats
     $scope.user = $scope.mySt();
     $scope.myMet = testFactory.getMetric; //myMet = my "metric"    
+    $scope.dataStats = testFactory.getDataStats();
     
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function(isValid) {
@@ -44,7 +45,8 @@ app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory
     $scope.myStats = testFactory.getStats();
     $scope.myMet = testFactory.getMetric;
     $scope.user = testFactory.getStats();
-    $scope.myMcat =  testFactory.getMcat; 
+    $scope.myMcat =  testFactory.getMcat;
+    $scope.dataStats = testFactory.getDataStats();
     
     $scope.school = angular.fromJson(masterData).feed.entry[$routeParams.id];
     if(!angular.isUndefined($scope.school.gsx$_cyevm)){$scope.cgpa = $scope.school.gsx$_cyevm.$t;}
@@ -117,6 +119,7 @@ app.controller('HomeController', ['$scope','testFactory', function($scope,testFa
     $scope.myStats = testFactory.getStats();
     $scope.myMet = testFactory.getMetric;
     $scope.myMcat =  testFactory.getMcat;
+    $scope.dataStats = testFactory.getDataStats();
 }]);
 
 // This filter makes the assumption that the input will be in decimal form (i.e. 17% is 0.17).
@@ -157,16 +160,27 @@ app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
         "mcatbs":11,
         "mcatvr":9,
     };
+    var dataStats = {
+        "m":22.6415094339623,
+        "b":-1242.45283018868,
+        "avg":541.228556545897,
+        "sd":109.174599242304
+    }
 
     return {
         getStats : function () {
             return countF;
         },
+        getDataStats : function () {
+            return dataStats;
+        },
         getMcat : function() {
             return (countF.mcatps * 1 + countF.mcatvr * 1 + countF.mcatbs * 1); 
         },
         getMetric : function() {
-            return ((((countF.sgpa*0.65+countF.cgpa*0.35)/4)*0.5+((countF.mcatps*1+countF.mcatbs*1+countF.mcatvr*1)/45)*0.5)*800);
+            var outOf100 =  ((((countF.sgpa*0.65+countF.cgpa*0.35)/4)*0.5+((countF.mcatps*1+countF.mcatbs*1+countF.mcatvr*1)/45)*0.5)*100);
+            return (dataStats.m * outOf100) + dataStats.b;
+            //return ((((countF.sgpa*0.65+countF.cgpa*0.35)/4)*0.5+((countF.mcatps*1+countF.mcatbs*1+countF.mcatvr*1)/45)*0.5)*100);
         }
     }               
 });
