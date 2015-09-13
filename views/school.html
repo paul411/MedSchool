@@ -58,11 +58,13 @@
         </div>
         <div class="panel-body">
           <div ng-show="{{school.gsx$usnewsresearchranking.$t||school.gsx$usnewsprimarycareranking.$t}}">
-            <h4>US News Ranking</h4>
-            <show-rank ng-show="{{school.gsx$usnewsresearchranking.$t}}" rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="Research"></show-rank>
+            <h3>US News Ranking</h3>
+            <show-rank ng-show="{{school.gsx$usnewsresearchranking.$t}}" rank="{{school.gsx$usnewsresearchranking.$t}}" max="88" display="in Research"></show-rank>
             <show-rank ng-show="{{school.gsx$usnewsprimarycareranking.$t}}" rank="{{school.gsx$usnewsprimarycareranking.$t}}" max="85"
-            display="Primary Care"></show-rank>
-
+            display="in Primary Care"></show-rank>
+            <h3 ng-show="school.gsx$out-of-statetuition.$t > 0 || school.gsx$tuition.$t > 0">Cost of Attendance</h3>
+            <p ng-show="school.gsx$tuition.$t >0"><strong ng-show="school['gsx$out-of-statetuition'].$t > 0">In State: </strong>${{school.gsx$tuition.$t | number:0}}</p>
+            <p ng-show="school['gsx$out-of-statetuition'].$t>0"><strong ng-show="school['gsx$out-of-statetuition'].$t > 0">Out of State: </strong>${{school['gsx$out-of-statetuition'].$t | number:0}}</p>
           </div>
         </div>
       </div>

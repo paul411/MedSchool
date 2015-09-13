@@ -49,6 +49,7 @@ app.controller('SchoolController', ['$scope', '$log','$routeParams','testFactory
     $scope.dataStats = testFactory.getDataStats();
     
     $scope.school = angular.fromJson(masterData).feed.entry[$routeParams.id];
+    $scope.oos = $scope.school["gsx$out-of-statetuition"].$t;
     if(!angular.isUndefined($scope.school.gsx$_cyevm)){$scope.cgpa = $scope.school.gsx$_cyevm.$t;}
     if(!angular.isUndefined($scope.school.gsx$gpa)){$scope.sgpa = $scope.school.gsx$gpa.$t;}
     if(!angular.isUndefined($scope.school.gsx$_ckd7g)){$scope.mcat = $scope.school.gsx$_ckd7g.$t;}
@@ -130,6 +131,12 @@ app.filter('percentage', ['$filter', function ($filter) {
     return plusSign + $filter('number')(input * 100, decimals) + '%';
   };
 }]);
+
+app.filter('abs', function () {
+  return function(val) {
+    return Math.abs(val);
+  }
+});
 
 app.controller('StackedBarCtrl',['$scope', '$log', function ($scope, $log) {
    $scope.stackedBarlabels = [];

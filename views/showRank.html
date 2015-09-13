@@ -1,5 +1,6 @@
-<p data-toggle="tooltip" tooltip="{{rank}} out of {{max}}" tooltip-placement="left">
-	<span class="label" ng-class="{'label-success':percentile==0,'label-primary':percentile==1,'label-warning':percentile==2,'label-default':percentile>=3}">
-	{{rank}}</span>
-	<span class="show-rank-display">{{display}}</span>
+<p data-toggle="tooltip" tooltip="#{{rank}} out of {{max}}" tooltip-placement="left">
+	<!--<span class="label" ng-class="{'label-success':percentile==0,'label-primary':percentile==1,'label-warning':percentile==2,'label-default':percentile>=3}">-->
+	<strong>#{{rank}}</strong> {{display}}
+	<!--</span>
+	<span class="show-rank-display">{{display}}</span>-->
 </p>
